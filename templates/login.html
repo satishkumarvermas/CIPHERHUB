@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}">
+
+    <title>Login and Signup</title>
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="flip-card-inner">
+            <!-- Login Form -->
+            <div class="box-login">
+                <ul>
+                    <form action="/login" method="post">
+                        <h1>LOGIN</h1>
+                        <div class="email-login">
+                            <input class="inpt" type="email" name="email" placeholder="Email" required>
+                            <i class='fa fa-envelope'></i>
+                        </div>
+
+                        <div class="password-login">
+                            <input class="inpt" type="password" name="password" placeholder="Password" required>
+                            <i id="eye-login" class="fa fa-eye-slash"></i>
+                        </div>
+
+                        <div class="forget">
+                            <input type="checkbox" name="checkbox1" id="checkbox">
+                            <label for="checkbox">Remember me</label>
+                            <a href="#">Forget Password?</a>
+                        </div>
+                        <button type="submit" class="btn">LOGIN</button>
+                    </form>
+                    <div class="register-link">
+                        <p>Don't have an account? <a href="#" onclick="flip()">Sign Up</a></p>
+                    </div>
+                </ul>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="box-signup">
+                <ul>
+                    <form action="/signup" method="post">
+                        <h1>SIGN UP</h1>
+                        <div class="user-signup">
+                            <input class="inpt" type="text" name="name" placeholder="Full Name" required>
+                            <i class="fa fa-user"></i>
+                        </div>
+
+                        <div class="email-signup">
+                            <input class="inpt" type="email" name="email" placeholder="Email" required>
+                            <i class='fa fa-envelope'></i>
+                        </div>
+
+                        <div class="password-signup">
+                            <input class="inpt" type="password" name="password" placeholder="Password" required>
+                            <i id="eye-signup" class="fa fa-eye-slash"></i>
+                        </div>
+
+                        <div class="forget">
+                            <input type="checkbox" name="checkbox1" id="checkbox1">
+                            <label for="checkbox1">Remember me</label>
+                            <a href="#">Forget Password?</a>
+                        </div>
+                        <button type="submit" class="btn">SIGN UP</button>
+                    </form>
+                    <div class="register-link">
+                        <p>Already have an account? <a href="#" onclick="flipAgain()">Log In</a></p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    function flip() {
+        document.querySelector('.flip-card-inner').style.transform = 'rotateY(180deg)';
+    }
+
+    function flipAgain() {
+        document.querySelector('.flip-card-inner').style.transform = 'rotateY(0deg)';
+    }
+
+    const loginForm = document.querySelector('form');
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent page refresh
+        const email = document.querySelector("input[name='email']").value;
+        const password = document.querySelector("input[name='password']").value;
+
+        // Send login details to the server
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        // Display pop-up message
+        showPopup(result.message, result.status);
+        
+        if (result.status === 'success') {
+            setTimeout(() => {
+                window.location.href = '/home'; // Redirect on success
+            }, 2000);
+        }
+    });
+
+    function showPopup(message, status) {
+        const popup = document.createElement('div');
+        popup.className = `popup ${status}`;
+        popup.innerText = message;
+
+        document.body.appendChild(popup);
+
+        setTimeout(() => {
+            popup.remove(); // Remove the popup after 3 seconds
+        }, 3000);
+    }
+</script>
+
+
+</html>

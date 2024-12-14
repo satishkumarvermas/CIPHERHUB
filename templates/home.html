@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Methods</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homeStyle.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ user }}!</h1>
+    <h1>CIPHERHUB: MODERN ENCRYPTION</h1>
+    <h2>Select an Encryption Method</h2>
+    
+    <div class="grid-container">
+        <div class="card">
+            <div class="align" onclick="redirectTo('rsa')">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <h1>RSA Encryption</h1>
+            <p>
+                A widely-used asymmetric algorithm for secure data transmission.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="align" onclick="redirectTo('quantum')">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <h1>Quantum Encryption</h1>
+            <p>An advanced method using quantum mechanics for secure communication.</p>
+        </div>
+
+        <div class="card">
+            <div class="align" onclick="redirectTo('aes')">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <h1>AES Encryption</h1>
+            <p>A symmetric encryption standard known for its efficiency and security.</p>
+        </div>
+
+        <div class="card">
+            <div class="align" onclick="redirectTo('des')">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <h1>DES Encryption</h1>
+            <p>An older symmetric-key method, replaced by more secure algorithms.</p>
+        </div>
+
+        <div class="card">
+            <div class="align" onclick="redirectTo('caesar')">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <h1>Caesar Cipher</h1>
+            <p>A simple substitution cipher that shifts characters by a set number.</p>
+        </div>
+
+        <div class="card">
+            <div class="align" onclick="redirectTo('hill')">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <h1>Hill Cipher</h1>
+            <p>A polygraphic cipher that uses linear algebra for encryption.</p>
+        </div>
+
+        <div class="card">
+            <div class="align" onclick="redirectTo('rail-fence')">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <h1>Rail Fence Cipher</h1>
+            <p>A transposition cipher that reorders text in a zigzag pattern.</p>
+        </div>
+    </div>
+
+    <script>
+        function redirectTo(page) {
+            window.location.href = '/' + page;
+        }
+    </script>
+</body>
+</html>

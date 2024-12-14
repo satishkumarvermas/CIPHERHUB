@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ name | capitalize }}</title>
+</head>
+<body>
+    <h1>{{ name | capitalize }} Algorithm</h1>
+    <form method="post">
+        <textarea name="input_text" placeholder="Enter text" required></textarea>
+        <select name="action">
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+        </select>
+        <button type="submit">Process</button>
+    </form>
+    <div>
+        <h3>Output:</h3>
+        <p>{{ output_text }}</p>
+    </div>
+    <a href="{{ url_for('home') }}">Back</a>
+</body>
+</html>
